@@ -1,0 +1,32 @@
+<div class="row mt-5 ">
+  <div class="col-md-12">
+    <div class=" btn btn-primary" routerLink="/home/manage"> Create Movie</div>
+  </div>
+  <ng-container *ngIf="!loading">
+    <ng-container *ngIf="movies?.length > 0 ; else noMovies">
+
+      <ng-container *ngFor="let movie of movies; let index = index">
+        <div class="col-md-4 my-2">
+          <div class="card" >
+            <img class="card-img-top" src="{{movie.image}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{movie.name}}</h5>
+              <p class="card-text">{{movie.description}}</p>
+              <button routerLink="/home/manage/{{movie.id}}" class="btn btn-primary">Edit Movie</button>
+              <button (click)="deleteMovie(movie.id , index)" class="btn btn-danger mx-2">delete Movie</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </ng-container>
+
+  <ng-template #noMovies>
+    <div class="col-md-12">
+      <div class="alert alert-danger" role="alert">
+        No movies found
+      </div>
+    </div>
+  </ng-template>
+</div>
